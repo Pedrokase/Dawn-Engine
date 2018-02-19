@@ -1,9 +1,0 @@
-name: DawnEngine
-version: 1.0
-author: Pedrokase
-main: io.github.pedrokase.DawnEngine
-
-commands:
-  roll:
-    description: Your description
-    usage: /roll {dice_sides} {dice_amount}
