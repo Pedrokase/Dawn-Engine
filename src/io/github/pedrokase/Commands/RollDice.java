@@ -16,20 +16,39 @@ public class RollDice implements CommandExecutor {
 
         int diceSides, diceAmount;
 
-        if(args.length >= 1) {
-            diceSides = args[0] != null ? Integer.parseInt(args[0]) : DEFAULT_DICE_SIDES;
-            diceAmount = args[1] != null ? Integer.parseInt(args[1]) : DEFAULT_DICE_AMOUNT;
-        }
-        else {
-            diceSides  = DEFAULT_DICE_SIDES;
-            diceAmount = DEFAULT_DICE_AMOUNT;
+        //TODO Add exception for when sender inserts '0' as a number
+        //TODO Add modifiers for powerful players or cheating ones
+        //TODO Add way to re-roll your throw with user prompt
+
+        try {
+
+            if (args.length == 1) {
+                diceSides = Integer.parseInt(args[0]);
+                diceAmount = DEFAULT_DICE_AMOUNT;
+            } else if (args.length >= 2) {
+                diceSides = Integer.parseInt(args[0]);
+                diceAmount = Integer.parseInt(args[1]);
+            } else {
+                diceSides = DEFAULT_DICE_SIDES;
+                diceAmount = DEFAULT_DICE_AMOUNT;
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.append("You throw a ").append(diceSides).append(" sided dice");
+            sb.append(diceAmount == 1 ? " once ":(diceAmount+" times ") );
+            sb.append("and rolled a ").append(RoleplayUtils.rollDice(diceSides,diceAmount));
+
+            sender.sendMessage(ChatColor.GOLD + sb.toString());
+
+            return true;
+
+        }catch (NumberFormatException e){
+            sender.sendMessage(ChatColor.RED + "Please insert a valid number!");
+            return false;
         }
 
-        sender.sendMessage(ChatColor.GOLD
-                + "You throw a " + diceSides
-                + " sided dice " + diceAmount
-                + " times and rolled a " + RoleplayUtils.rollDice(diceSides, diceAmount));
 
-        return true;
+
     }
 }

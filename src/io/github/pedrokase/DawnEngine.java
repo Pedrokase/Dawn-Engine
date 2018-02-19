@@ -7,7 +7,6 @@ public class DawnEngine extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         this.getCommand("roll").setExecutor(new RollDice());
     }
 
