@@ -1,6 +1,6 @@
 package io.github.pedrokase.Commands;
 
-import io.github.pedrokase.RoleplayUtils;
+import io.github.pedrokase.Dice;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,14 +8,10 @@ import org.bukkit.command.CommandSender;
 
 public class RollDice implements CommandExecutor {
 
-    private final int DEFAULT_DICE_SIDES = 6,
-                      DEFAULT_DICE_AMOUNT = 1;
-
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args) {
 
-        int diceSides, diceAmount;
-
+        Dice dice;
         //TODO Add exception for when sender inserts '0' as a number
         //TODO Add modifiers for powerful players or cheating ones
         //TODO Add way to re-roll your throw with user prompt
@@ -23,21 +19,21 @@ public class RollDice implements CommandExecutor {
         try {
 
             if (args.length == 1) {
-                diceSides = Integer.parseInt(args[0]);
-                diceAmount = DEFAULT_DICE_AMOUNT;
+                dice = new Dice(Integer.parseInt(args[0]));
             } else if (args.length >= 2) {
-                diceSides = Integer.parseInt(args[0]);
-                diceAmount = Integer.parseInt(args[1]);
+                dice = new Dice(
+                        Integer.parseInt(args[0]),
+                        Integer.parseInt(args[1])
+                );
             } else {
-                diceSides = DEFAULT_DICE_SIDES;
-                diceAmount = DEFAULT_DICE_AMOUNT;
+                dice = new Dice();
             }
 
             StringBuilder sb = new StringBuilder();
 
-            sb.append("You throw a ").append(diceSides).append(" sided dice");
-            sb.append(diceAmount == 1 ? " once ":(diceAmount+" times ") );
-            sb.append("and rolled a ").append(RoleplayUtils.rollDice(diceSides,diceAmount));
+            sb.append("You throw a ").append(dice.getSides()).append(" sided dice");
+            sb.append(dice.getNumber() == 1 ? " once ":(dice.getNumber()+" times ") );
+            sb.append("and rolled a ").append(dice.roll() );
 
             sender.sendMessage(ChatColor.GOLD + sb.toString());
 
