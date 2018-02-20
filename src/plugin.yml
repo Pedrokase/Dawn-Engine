@@ -5,5 +5,5 @@ main: io.github.pedrokase.DawnEngine
 
 commands:
   roll:
-    description: Your description
-    usage: /roll {dice_sides} {dice_amount}
+    description: Allows the user to roll a d{X} {Y} times
+    usage: /roll {dice_sides} {dice_number}

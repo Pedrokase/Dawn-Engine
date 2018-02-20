@@ -12,7 +12,6 @@ public class RollDice implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args) {
 
         Dice dice;
-        //TODO Add exception for when sender inserts '0' as a number
         //TODO Add modifiers for powerful players or cheating ones
         //TODO Add way to re-roll your throw with user prompt
 
@@ -31,7 +30,7 @@ public class RollDice implements CommandExecutor {
 
             StringBuilder sb = new StringBuilder();
 
-            sb.append("You throw a ").append(dice.getSides()).append(" sided dice");
+            sb.append("You throw a ").append(dice.getSides()).append(" sided dice ");
             sb.append(dice.getNumber() == 1 ? " once ":(dice.getNumber()+" times ") );
             sb.append("and rolled a ").append(dice.roll() );
 
