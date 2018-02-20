@@ -1,9 +1,12 @@
 package io.github.pedrokase;
 
 
+import java.util.Random;
+
 public class Dice {
 
     private int sides, number;
+    private static Random random = new Random();
 
     //Default dices have 6 sides and are rolled once
     public Dice() {
@@ -23,7 +26,14 @@ public class Dice {
 
     public int roll(){
         //TODO Add +modifiers
-        return (int) ( (Math.random()*getSides()) + 1 )*getNumber();
+        int sides  = getSides(),
+            result = 0;
+
+        for (int idx = 1; idx <= getNumber(); idx++) {
+            result += (random.nextInt(sides)+1);
+        }
+        return result;
+
     }
 
     //===============================================
