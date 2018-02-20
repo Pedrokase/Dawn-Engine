@@ -26,14 +26,12 @@ public class Dice {
 
     public int roll(){
         //TODO Add +modifiers
-        int sides  = getSides(),
-            result = 0;
+        int result = 0;
 
-        for (int idx = 1; idx <= getNumber(); idx++) {
+        for (int idx = 1; idx <= number; idx++) {
             result += (random.nextInt(sides)+1);
         }
         return result;
-
     }
 
     //===============================================

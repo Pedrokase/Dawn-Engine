@@ -12,6 +12,7 @@ public class RollDice implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args) {
 
         Dice dice;
+
         //TODO Add modifiers for powerful players or cheating ones
         //TODO Add way to re-roll your throw with user prompt
 
@@ -30,9 +31,10 @@ public class RollDice implements CommandExecutor {
 
             StringBuilder sb = new StringBuilder();
 
-            sb.append("You throw a ").append(dice.getSides()).append(" sided dice ");
-            sb.append(dice.getNumber() == 1 ? " once ":(dice.getNumber()+" times ") );
-            sb.append("and rolled a ").append(dice.roll() );
+            sb
+                    .append("You throw a ").append(dice.getSides()).append(" sided dice")
+                    .append(dice.getNumber() == 1 ? " once ":(dice.getNumber()+" times ") )
+                    .append("and rolled a ").append(dice.roll() );
 
             sender.sendMessage(ChatColor.GOLD + sb.toString());
 
